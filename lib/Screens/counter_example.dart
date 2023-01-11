@@ -2,14 +2,9 @@ import 'package:counter_example_wit_provider/provider/counter_provider_model.dar
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CounterExample extends StatefulWidget {
+class CounterExample extends StatelessWidget {
   const CounterExample({super.key});
 
-  @override
-  State<CounterExample> createState() => _CounterExampleState();
-}
-
-class _CounterExampleState extends State<CounterExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +22,7 @@ class _CounterExampleState extends State<CounterExample> {
             child: Text(
               value.count.toString(),
               style: const TextStyle(
-                fontSize: 25,
+                fontSize: 40,
               ),
             ),
           );
@@ -35,11 +30,22 @@ class _CounterExampleState extends State<CounterExample> {
       ),
       floatingActionButton: Consumer<CountProvider>(
         builder: (context, value, child) {
-          return FloatingActionButton(
-            onPressed: () {
-              value.setCounter();
-            },
-            child: const Icon(Icons.add),
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              FloatingActionButton(
+                onPressed: () {
+                  value.increment();
+                },
+                child: const Icon(Icons.add),
+              ),
+              FloatingActionButton(
+                onPressed: () {
+                  value.decrement();
+                },
+                child: const Icon(Icons.remove),
+              ),
+            ],
           );
         },
       ),

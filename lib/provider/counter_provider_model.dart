@@ -7,8 +7,12 @@ class CountProvider with ChangeNotifier{
   int _count=0;
   int get count => _count;
 
-  void setCounter (){
+  void increment(){
     _count++;
+    notifyListeners();
+  }
+    void decrement(){
+    _count--;
     notifyListeners();
   }
 }
